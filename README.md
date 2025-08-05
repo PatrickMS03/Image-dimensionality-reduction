@@ -45,10 +45,12 @@ class ReduzDimen():
     return imagem_binaria
 
 def main():
+
  '''Colocar a função main para organizar melhor'''
 
  imagem_selecionada = 'sua_imagem.jpg'
  rd = ReduzDimen(imagem_selecionada)
+ 
  '''imagem_selecionada será o input para colocar o arquivo da imagem'''
 
  try:
