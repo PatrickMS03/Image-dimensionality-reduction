@@ -7,13 +7,16 @@ from PIL import Image
 
 class ReduzDimen():
   def __init__(self, imagem_selecionada):
+  
     '''construtor recebe o caminho 'imagem selecionada' e a o image abre a imagem selecionada e convertee para rgb evitando problemas com as cores'''
+   
     self.imagem_original = Image.open(imagem_selecionada).convert('RGB')
     self.imagem_selecionada = imagem_selecionada
 
   def converte_cinza(self):
-    '''função que transforma a imagem em cinza pegando sua altura e largura pelo metodo .size cria uma nova imagem em branco ('L', caso não tenha o código irá esperar três valores para cada pixel em vez de um)
-    que irá receber os valores de cada pixel usa o load para carregar os dados mais rápido, depois o código itera sobre cada x e y obtendo os valores de cada um colocando-os na fórmula de luminosidade e montando a imagem '''
+   
+    '''função que transforma a imagem em cinza pegando sua altura e largura pelo metodo .size cria uma nova imagem em branco ('L', caso não tenha o código irá esperar três valores para cada pixel em vez de um) que irá receber os valores de cada pixel usa o load para carregar os dados mais rápido, depois o código itera sobre cada x e y obtendo os valores de cada um colocando-os na fórmula de luminosidade e montando a imagem '''
+    
     largura, altura = self.imagem_original.size
     imagem_cinza = Image.new('L', (largura, altura))
     pixels = self.imagem_original.load()
@@ -27,8 +30,9 @@ class ReduzDimen():
 
 
   def converte_binaria(self, img_cinza, limiar = 128):
-    '''função que transforma a imagem cinza em preto e branco, com a função recebendo um valor default para o limiar onde dirá se a cor será preta ou branca, no caso, se for menor que 128 será preto, e se for maior será branco, sendo
-    esses valores definidos pelo '1' quando é criado a nova imagem '''
+    
+    '''função que transforma a imagem cinza em preto e branco, com a função recebendo um valor default para o limiar onde dirá se a cor será preta ou branca, no caso, se for menor que 128 será preto, e se for maior será branco, sendo esses valores definidos pelo '1' quando é criado a nova imagem '''
+    
     largura, altura = img_cinza.size
     imagem_binaria = Image.new("1", (largura, altura))
 
@@ -58,12 +62,14 @@ def main():
 
 
    'imagem original'
+   
    plt.subplot(1, 3, 1)
    plt.imshow(rd.imagem_original)
    plt.axis('off')
    plt.title('Original')
 
    'imagem cinza'
+   
    plt.subplot(1, 3, 2)
    img_cinza = rd.converte_cinza()
    plt.imshow(img_cinza, cmap= 'gray')
@@ -73,6 +79,7 @@ def main():
    plt.title('Gray')
 
    'imagem binária'
+   
    plt.subplot(1, 3, 3)
    img_binaria = rd.converte_binaria(img_cinza)
    plt.imshow(img_binaria)
